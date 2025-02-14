@@ -10,10 +10,13 @@ dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
 const app = express();
 
-// Enable CORS for your frontend
-// app.use(cors({
-//   origin: process.env.FRONTEND_URL || 'http://localhost:5173'
-// }));
+// Configure CORS
+const corsOptions = {
+  origin: 'https://myvalentinegift.vercel.app', // Allow only your frontend URL
+  optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
@@ -44,7 +47,8 @@ Return ONLY a JSON object with this exact structure(if you wanna make few more l
 IMPORTANT:
 - Do not use any newlines (\n) in the text fields
 - Keep all text in a single line, using spaces instead of newlines
-- The response must be valid JSON that can be parsed with JSON.parse()`;
+- The response must be valid JSON that can be parsed with JSON.parse()
+    It must be valid json without any escape character that makes it invalid and it must use the above response schema.`;
     
     // Use environment variables from .env
     const CLOUDFLARE_API_KEY = process.env.CLOUDFLARE_API_KEY;
