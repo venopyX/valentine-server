@@ -11,9 +11,9 @@ dotenv.config({ path: path.join(__dirname, '..', '.env') });
 const app = express();
 
 // Enable CORS for your frontend
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173'
-}));
+// app.use(cors({
+//   origin: process.env.FRONTEND_URL || 'http://localhost:5173'
+// }));
 
 app.use(express.json());
 
